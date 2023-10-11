@@ -38,3 +38,16 @@ if my_dog.age > brother_dog.age:
     print(f'\n{my_dog.name} is older than {brother_dog.name}')
 else:
     print(f'{brother_dog.name} is older than {my_dog.name}')
+
+"""
+
+Access to all attributes (including optional): 
+
+"""
+attrs = vars(my_dog)
+print(f"\n{my_dog.name}'s attributes are:" )
+print(', '.join("%s: %s" % item for item in attrs.items()))
+
+attrs = vars(brother_dog)
+print(f"\n{brother_dog.name}'s attributes are:" )
+print(', '.join("%s: %s" % item for item in attrs.items()))
