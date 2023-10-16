@@ -19,9 +19,16 @@ class User:
         self.email = email
         self.phone_number = phone_number
         self.city = city
+        self.login_attempts = 0
 
     def greet_user(self):
         print(f'Hi, {self.first_name}! Nice to see you back!')
+
+    def increment_login_attempts(self):
+        self.login_attempts += 1
+
+    def reset_login_attempts(self):
+        self.login_attempts = 0
 
 
 user_1 = User(
@@ -33,3 +40,11 @@ user_1 = User(
 )
 
 user_1.greet_user()
+
+user_1.increment_login_attempts()
+user_1.increment_login_attempts()
+user_1.increment_login_attempts()
+user_1.increment_login_attempts()
+print(f"Total {user_1.first_name}'s login attempts number is {user_1.login_attempts}")
+user_1.reset_login_attempts()
+print(f"After reset {user_1.first_name}'s login attempts number is {user_1.login_attempts}")
