@@ -34,27 +34,27 @@ class Restaurant:
             print('You are not allowed to cut number of served persons by incrementing negatively!')
 
 
-umit_usta = Restaurant("Umit Usta", 'Turkish')
-print(umit_usta.restaurant_name)
-print(umit_usta.cuisine_type)
-umit_usta.describe_restaurant()
-
-"""Start with your class from Exercise 9-1. Create three
-different instances from the class, and call describe_restaurant() for each
-instance."""
-
-giovanni = Restaurant("Giovanni", 'Italian')
-yakitoria = Restaurant('Yakitoria', 'Japanese')
-korchma = Restaurant('Taras Bulba', 'Ukranian')
-
-giovanni.describe_restaurant()
-yakitoria.describe_restaurant()
-korchma.describe_restaurant()
-
-print(f'There were {giovanni.number_served} customers served in the {giovanni.restaurant_name.title()} Restaurant.')
-giovanni.set_number_served(30)
-print(f'There were {giovanni.number_served} customers served in the {giovanni.restaurant_name.title()} Restaurant.')
-giovanni.set_number_served(-5)
-print(f'There were {giovanni.number_served} customers served in the {giovanni.restaurant_name.title()} Restaurant.')
-giovanni.increment_number_served(6)
-print(f'After the party at the {giovanni.restaurant_name.title()} the number of customers is {giovanni.number_served}')
+# umit_usta = Restaurant("Umit Usta", 'Turkish')
+# print(umit_usta.restaurant_name)
+# print(umit_usta.cuisine_type)
+# umit_usta.describe_restaurant()
+#
+# """Start with your class from Exercise 9-1. Create three
+# different instances from the class, and call describe_restaurant() for each
+# instance."""
+#
+# giovanni = Restaurant("Giovanni", 'Italian')
+# yakitoria = Restaurant('Yakitoria', 'Japanese')
+# korchma = Restaurant('Taras Bulba', 'Ukranian')
+#
+# giovanni.describe_restaurant()
+# yakitoria.describe_restaurant()
+# korchma.describe_restaurant()
+#
+# print(f'There were {giovanni.number_served} customers served in the {giovanni.restaurant_name.title()} Restaurant.')
+# giovanni.set_number_served(30)
+# print(f'There were {giovanni.number_served} customers served in the {giovanni.restaurant_name.title()} Restaurant.')
+# giovanni.set_number_served(-5)
+# print(f'There were {giovanni.number_served} customers served in the {giovanni.restaurant_name.title()} Restaurant.')
+# giovanni.increment_number_served(6)
+# print(f'After the party at the {giovanni.restaurant_name.title()} the number of customers is {giovanni.number_served}')

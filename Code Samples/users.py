@@ -31,20 +31,20 @@ class User:
         self.login_attempts = 0
 
 
-user_1 = User(
-    'Alex',
-    'Chasovskoy',
-    'a.n.chasovskoy@gmail.com',
-    '+79851138223',
-    'Sombor'
-)
-
-user_1.greet_user()
-
-user_1.increment_login_attempts()
-user_1.increment_login_attempts()
-user_1.increment_login_attempts()
-user_1.increment_login_attempts()
-print(f"Total {user_1.first_name}'s login attempts number is {user_1.login_attempts}")
-user_1.reset_login_attempts()
-print(f"After reset {user_1.first_name}'s login attempts number is {user_1.login_attempts}")
+# user_1 = User(
+#     'Alex',
+#     'Chasovskoy',
+#     'a.n.chasovskoy@gmail.com',
+#     '+79851138223',
+#     'Sombor'
+# )
+#
+# user_1.greet_user()
+#
+# user_1.increment_login_attempts()
+# user_1.increment_login_attempts()
+# user_1.increment_login_attempts()
+# user_1.increment_login_attempts()
+# print(f"Total {user_1.first_name}'s login attempts number is {user_1.login_attempts}")
+# user_1.reset_login_attempts()
+# print(f"After reset {user_1.first_name}'s login attempts number is {user_1.login_attempts}")
