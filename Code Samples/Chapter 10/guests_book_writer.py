@@ -11,8 +11,10 @@ guests = ''
 ask_for_name = True
 
 while ask_for_name:
-    guests += f"{' '.join(input('What is your name? ').split()).title()}\n"
+    guest = f"{' '.join(input('What is your name? Enter q to quit. ').split()).title()}\n"
 
-    if input('To continue type "y"\nTo stop type "q"\n').lower().strip() != 'y':
+    if guest.replace('\n', '') == 'Q':
         ask_for_name = False
+    else:
+        guests += guest
 path.write_text(guests)
