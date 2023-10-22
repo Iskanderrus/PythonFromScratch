@@ -1,0 +1,5 @@
+In Python you can write scripts to automate routine tasks.
+In Python you can use Tkinter to write GUI applications.
+In Python you can easily analyze large amounts of data.
+In Python you can use open cv library to work on images.
+In Python you can write advanced ML models.
