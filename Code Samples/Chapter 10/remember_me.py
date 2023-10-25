@@ -17,25 +17,21 @@ def get_stored_userdata(path_object: Path) -> dict or None:
         return None
 
 
-def get_new_userdata(path_object: Path) -> str:
+def get_new_userdata(path_object: Path) -> None:
     """
     Function to get username of a new user and save it in the json file.
     :param path_object: Path object to save the username in json file.
     :return: Username as a string.
     """
-    username = input('What is your name? ').strip().lower()
-    user_email = input('What is your email? ').strip().lower()
-    user_city = input('What is your city? ').strip().lower()
-    user_birth_year = int(input('What is your birth year? '))
     user_data = {
-        'username': username,
-        'email': user_email,
-        'city': user_city,
-        'year': user_birth_year,
+        'username': input('What is your name? ').strip().lower(),
+        'email': input('What is your email? ').strip().lower(),
+        'city': input('What is your city? ').strip().lower(),
+        'year': int(input('What is your birth year? ')),
     }
     contents = json.dumps(user_data)
     path_object.write_text(contents)
-    return username
+    print(f"We'll remember you when you come back, {user_data['username'].title()}!")
 
 
 def greet_user() -> None:
@@ -44,16 +40,26 @@ def greet_user() -> None:
     :return: None
     """
 
-    path = Path('username.json')
+    path = Path('userdata.json')
     user_data = get_stored_userdata(path)
-    if user_data:
-        print(f"Hi, {user_data['username'].title()}! Nice to see you again!")
-        print(f"Your were born in {user_data['year']} and "
-              f"you live now in {user_data['city'].title()}, your email is {user_data['email']}.")
+    try:
+        user_name_check = input(f"Is you username {user_data['username'].title()}? y/n\n").lower().strip()
+    except TypeError:
+        get_new_userdata(path)
 
     else:
-        username = get_new_userdata(path)
+        if user_name_check == 'n':
+            get_new_userdata(path)
 
-        print(f"We'll remember you when you come back, {username}!")
+        elif user_name_check == 'y':
+            print(f"Hi, {user_data['username'].title()}! Nice to see you again!")
+            print(f"Your were born in {user_data['year']} and "
+                  f"you live now in {user_data['city'].title()}, "
+                  f"your email is {user_data['email']}.")
+
+        else:
+            print('Not valid input. Try again.')
+            greet_user()
+
 
 greet_user()
