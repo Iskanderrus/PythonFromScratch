@@ -8,6 +8,9 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (50, 18, 122)
 
+        # Ship settings
         self.ship_height = 82
         self.ship_width = 60
         self.ship_rotation = 90
+        self.ship_speed = 1.5
+
