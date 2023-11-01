@@ -1,26 +1,23 @@
 import pygame
-import sys
-
+from settings import Settings
 
 class Rocket:
-    def __init__(self):
-        """ Initialize the game, create game resources """
-        pygame.init()
+    """ A class to manage the rocket """
 
-        self.screen = pygame.display.set_mode((1200, 800))
-        pygame.display.set_caption("Sky Rocketing Rocket")
+    def __init__(self, rocket_game):
+        """ Initialize the rocket and set its start position """
+        self.screen = rocket_game.screen
+        self.settings = Settings()
+        self.screen_rect = rocket_game.screen.get_rect()
 
-    def run_game(self):
-        """ Start the main loop of the game """
-        while True:
-            # Watch the keyboard and mouse events
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            # Make the most recently drawn screen visible
-            pygame.display.flip()
+        # Load the rocket image and get its rect
+        self.image = pygame.image.load('images/rocket.png')
+        self.image = pygame.transform.scale(self.image, (self.settings.rocket_width, self.settings.rocket_height))
+        self.rect = self.image.get_rect()
 
+        # Start each new rocket at the bottom center of the screen
+        self.rect.midbottom = self.screen_rect.midbottom
 
-if __name__ == '__main__':
-    rocket = Rocket()
-    rocket.run_game()
+    def blitme(self):
+        """ Draw the rocket at its current location """
+        self.screen.blit(self.image, self.rect)
