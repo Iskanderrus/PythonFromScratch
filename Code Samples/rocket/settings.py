@@ -5,8 +5,8 @@ class Settings:
         """ Initialize the game's settings """
 
         # Screen settings
-        self.screen_width = 1200
-        self.screen_height = 800
+        self.screen_width = 1000
+        self.screen_height = 1000
         self.bg_color = (176, 224, 230)
 
         # Rocket settings
