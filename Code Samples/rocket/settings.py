@@ -7,11 +7,10 @@ class Settings:
         # Screen settings
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_color = (176,224,230)
+        self.bg_color = (176, 224, 230)
 
         # Rocket settings
-        self.rocket_height = 82
-        self.rocket_width = 60
+        self.rocket_height = 85
+        self.rocket_width = 52
         self.rocket_rotation = 90
         self.rocket_speed = 1.5
-        
