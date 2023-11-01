@@ -22,7 +22,6 @@ class AlienInvasion:
         pygame.display.set_caption('Alien Invasion')
         self.ship = Ship(self)
 
-
     def run_game(self):
         """ Start the main loop for the game. """
         while True:
@@ -65,7 +64,6 @@ class AlienInvasion:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
-
 
 
 if __name__ == '__main__':
