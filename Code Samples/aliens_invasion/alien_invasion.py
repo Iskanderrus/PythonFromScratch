@@ -24,7 +24,6 @@ class AlienInvasion:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
 
-
     def run_game(self):
         """ Start the main loop for the game. """
         while True:
@@ -80,12 +79,11 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
 
-
     def _fire_bullet(self):
         """ Create a new bullet and add it to the bullets group """
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
-
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 
 
 if __name__ == '__main__':
