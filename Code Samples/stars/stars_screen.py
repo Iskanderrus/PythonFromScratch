@@ -1,5 +1,6 @@
 import sys
 import pygame
+from random import randint
 from star import Star
 
 
@@ -41,12 +42,14 @@ class StarScreen:
         star = Star(self)
         star_width, star_height = star.rect.size
         current_x, current_y = star_width, star_height
-        while current_y < (self.screen_height - 0.25 * star_height):
+        while current_y < (self.screen_height - 1 * star_height):
             while current_x < (self.screen_width - 1 * star_width):
+                current_x = randint(0, self.screen.get_width())
+                current_y = randint(0, self.screen.get_height())
                 self._create_star(current_x, current_y)
-                current_x += 2 * star_width
+                current_x += 3 * star_width
             current_x = star_width
-            current_y += 3 * star_height
+            current_y += 3.75 * star_height
 
     def _create_star(self, x_position, y_position):
         """ Create an alien and place it in the row """
