@@ -1,5 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
+from settings import Settings
 
 
 class Alien(Sprite):
@@ -8,10 +9,12 @@ class Alien(Sprite):
     def __init__(self, ai_game):
         """ Initialize the alien and set its starting position """
         super().__init__()
+        self.settings = Settings()
         self.screen = ai_game.screen
 
         # Load the alien image and set its rect attribute
         self.image = pygame.image.load('images/alien.png')
+        self.image = pygame.transform.scale(self.image, (self.settings.alien_width, self.settings.alien_height))
         self.rect = self.image.get_rect()
 
         # Start each new alien near the top left of the screen
