@@ -24,3 +24,4 @@ class Settings:
         # Alien settings
         self.alien_height = 35
         self.alien_width = 55
+        self.alien_speed = 1.0
