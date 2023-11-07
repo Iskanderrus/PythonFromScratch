@@ -196,6 +196,9 @@ class AlienInvasion:
                 mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
 
+            elif event.type == pygame.KEYDOWN:
+                self._check_keydown_events(event)
+
             # Action if a key is hit
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -205,7 +208,10 @@ class AlienInvasion:
 
     def _check_keydown_events(self, event):
         """ Respond to keypress """
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_p:
+            self.game_active = True
+            pygame.mouse.set_visible(False)
+        elif event.key == pygame.K_RIGHT:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
