@@ -43,6 +43,10 @@ class AlienInvasion:
         # Make the Play button
         self.play_button = Button(self, "Play")
 
+    def _check_play_button(self, mouse_pos):
+        """ Start a new game when the player clicks Play """
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True
 
     def _check_aliens_bottom(self):
         """ Check if any alien reached the bottom of the screen """
@@ -172,6 +176,11 @@ class AlienInvasion:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
             # Action if a key is hit
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
