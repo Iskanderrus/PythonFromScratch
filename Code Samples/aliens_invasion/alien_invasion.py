@@ -52,11 +52,11 @@ class AlienInvasion:
             self.bullets.empty()
             self.aliens.empty()
 
-            # Create a new fleet and center the ship
-            self._create_fleet()
+            # Center the ship
             self.ship.center_ship()
 
             if self.level_1_button.rect.collidepoint(mouse_pos):
+                self._create_fleet()
                 self.game_active = True
                 # Hide the mouse cursor
                 pygame.mouse.set_visible(False)
@@ -64,6 +64,10 @@ class AlienInvasion:
             elif self.level_2_button.rect.collidepoint(mouse_pos):
                 # level 2 settings applied
                 self.settings.increase_speed()
+                self.settings.alien_height *= 0.95
+                self.settings.alien_width *= 0.95
+                self.settings.bullets_allowed += 2
+                self._create_fleet()
                 self.game_active = True
                 # Hide the mouse cursor
                 pygame.mouse.set_visible(False)
@@ -72,6 +76,10 @@ class AlienInvasion:
                 # level 3 settings applied
                 self.settings.increase_speed()
                 self.settings.increase_speed()
+                self.settings.alien_height *= 0.925
+                self.settings.alien_width *= 0.925
+                self.settings.bullets_allowed += 3
+                self._create_fleet()
                 self.game_active = True
                 # Hide the mouse cursor
                 pygame.mouse.set_visible(False)
@@ -129,12 +137,12 @@ class AlienInvasion:
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
         current_x, current_y = alien_width, alien_height
-        while current_y < (self.settings.screen_height - 3 * alien_height):
+        while current_y < (self.settings.screen_height - 5 * alien_height):
             while current_x < (self.settings.screen_width - 2 * alien_width):
                 self._create_alien(current_x, current_y)
-                current_x += 3 * alien_width
+                current_x += 2 * alien_width
             current_x = alien_width
-            current_y += 5 * alien_height
+            current_y += 3 * alien_height
 
     def _create_alien(self, x_position, y_position):
         """ Create an alien and place it in the row """
