@@ -63,10 +63,12 @@ class AlienInvasion:
 
             elif self.level_2_button.rect.collidepoint(mouse_pos):
                 # level 2 settings applied
+                self.settings.bg_color = (204, 204, 255)
                 self.settings.increase_speed()
                 self.settings.alien_height *= 0.95
                 self.settings.alien_width *= 0.95
-                self.settings.bullets_allowed += 2
+                self.settings.bullets_allowed += 3
+                self.settings.bullet_color = (150, 0, 24)
                 self._create_fleet()
                 self.game_active = True
                 # Hide the mouse cursor
@@ -76,9 +78,11 @@ class AlienInvasion:
                 # level 3 settings applied
                 self.settings.increase_speed()
                 self.settings.increase_speed()
-                self.settings.alien_height *= 0.925
-                self.settings.alien_width *= 0.925
-                self.settings.bullets_allowed += 3
+                self.settings.bg_color = (213, 113, 63)
+                self.settings.alien_height *= 0.9
+                self.settings.alien_width *= 0.9
+                self.settings.bullets_allowed += 2
+                self.settings.bullet_color = (255, 255, 153)
                 self._create_fleet()
                 self.game_active = True
                 # Hide the mouse cursor
