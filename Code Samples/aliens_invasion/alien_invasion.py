@@ -60,6 +60,7 @@ class AlienInvasion:
             # Reset the game statistics.
             self.stats.reset_stats()
             self.sb.prep_score()
+            self.sb.prep_level()
 
             if self.level_1_button.rect.collidepoint(mouse_pos):
                 self._create_fleet()
@@ -223,6 +224,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+            # Increase level
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _update_screen(self):
         """ Redraw the screen during each pass through the loop """
