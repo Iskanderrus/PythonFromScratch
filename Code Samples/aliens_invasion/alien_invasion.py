@@ -61,6 +61,7 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
 
             if self.level_1_button.rect.collidepoint(mouse_pos):
                 self._create_fleet()
@@ -123,6 +124,7 @@ class AlienInvasion:
         if self.stats.ships_left > 0:
             # Decrement ships left
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             # Get rid of any remaining bullets and aliens
             self.bullets.empty()
