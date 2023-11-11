@@ -4,9 +4,10 @@ from random import choice
 class RandomWalk:
     """ A class to generate random walks """
 
-    def __init__(self, num_points=5000):
+    def __init__(self, num_points=5000, num_directions=5):
         """ Initialize attributes of a walk """
         self.num_points = num_points
+        self.num_directions = num_directions
 
         # All walks start at (0,0) point
         self.x_values = [0]
@@ -20,11 +21,11 @@ class RandomWalk:
 
             # Decide which direction to go, and how far to go
             x_direction = choice([1, -1])
-            x_distance = choice([x for x in range(0, 5)])
+            x_distance = choice([x for x in range(0, self.num_directions)])
             x_step = x_direction * x_distance
 
             y_direction = choice([1, -1])
-            y_distance = choice([x for x in range(0, 5)])
+            y_distance = choice([x for x in range(0, self.num_directions)])
             y_step = y_direction * y_distance
 
             # Reject moves that go nowhere
