@@ -1,14 +1,9 @@
 import matplotlib.pyplot as plt
 
-input_values = [1, 2, 3, 4, 5]
-squares = [x ** 2 for x in input_values]
-
-# Apply built-in style
 plt.style.use('seaborn-v0_8-dark-palette')
-
-# Build figure and main plot
 fig, ax = plt.subplots()
-ax.plot(input_values, squares, linewidth=3)
+ax.scatter([x for x in range(1, 11) if x % 2 == 0],
+           [x ** 2 for x in range(1, 11) if x % 2 == 0])
 
 # Set chart title and label axes
 ax.set_title("Square Numbers", fontsize=24)
