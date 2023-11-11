@@ -13,7 +13,7 @@ class RandomWalk:
         self.x_values = [0]
         self.y_values = [0]
 
-    def will_walk(self):
+    def fill_walk(self):
         """ Calculate all the points in the walk """
 
         # Keep taking steps until the walk reaches the desired length
