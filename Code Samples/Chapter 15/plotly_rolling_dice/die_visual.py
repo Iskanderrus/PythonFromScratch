@@ -24,4 +24,9 @@ fig = px.bar(x=range(1, die_1.num_sides + die_2.num_sides+1), y=frequencies, tit
 
 # Further customization of the chart
 fig.update_layout(xaxis_dtick=1)
-fig.show()
+
+# Immediate display of the chart
+#fig.show()
+
+# Saving the chart into HTML file
+fig.write_html('dice_visual_d6d10.html')
