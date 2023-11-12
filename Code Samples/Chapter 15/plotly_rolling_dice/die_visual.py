@@ -15,8 +15,11 @@ results = [die_1.roll() + die_2.roll() for x in range(rolls)]
 frequencies = [results.count(value) for value in range(1, die_1.num_sides+die_2.num_sides+1)]
 
 # Visualize the results
-title = f"Results of Rolling Two Dies with {die_1.num_sides} Sides {rolls} Times"
+title = f"Results of Rolling Two Dies with {die_1.num_sides} Sides {rolls:,} Times"
 labels = {'x': "Result",
           'y': "Frequency of Result"}
 fig = px.bar(x=range(1, die_1.num_sides + die_2.num_sides+1), y=frequencies, title=title, labels=labels)
+
+# Further customization of the chart
+fig.update_layout(xaxis_dtick=1)
 fig.show()
