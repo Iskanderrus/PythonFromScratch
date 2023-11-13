@@ -16,17 +16,10 @@ all_eq_data = json.loads(contents)
 # Examine all earthquakes in the dataset
 all_eq_dicts = all_eq_data['features']
 
-# Extracting Magnitudes and Location Data
-mags, lons, lats, eq_titles = [], [], [], []
-for eq_dict in all_eq_dicts:
-    mag = abs(eq_dict['properties']['mag'])
-    lon = eq_dict['geometry']['coordinates'][0]
-    lat = eq_dict['geometry']['coordinates'][1]
-    eq_title = eq_dict['properties']['title']
-    mags.append(mag)
-    lons.append(lon)
-    lats.append(lat)
-    eq_titles.append(eq_title)
+mags = [abs(eq_dict['properties']['mag']) for eq_dict in all_eq_dicts]
+lons = [eq_dict['geometry']['coordinates'][0] for eq_dict in all_eq_dicts]
+lats = [eq_dict['geometry']['coordinates'][1] for eq_dict in all_eq_dicts]
+eq_titles = [eq_dict['properties']['title'] for eq_dict in all_eq_dicts]
 
 # Mapping the earthquakes
 title = "Global Earthquakes - Oct-Nov 2023"
