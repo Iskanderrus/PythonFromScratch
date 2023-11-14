@@ -6,9 +6,10 @@ import plotly.express as px
 token_path = Path('../../../../Documents/github_token.txt')
 token = token_path.read_text().strip()
 
+language = input('What programming language are you interested in? ').strip().lower()
 
 url = "https://api.github.com/search/repositories"
-python_request = "?q=language:python+sort:stars+stars:>10000"
+python_request = f"?q=language:{language}+sort:stars+stars:>10000"
 
 python_api_request = url + python_request
 
@@ -52,7 +53,7 @@ fig = px.bar(x=repo_links,
              color=stars,
              color_continuous_scale=px.colors.sequential.Plasma,
              labels={'y': 'Number of Stars', 'x': 'Repositories'},
-             title='Top Python Repositories in GitHub')
+             title=f'Top {language.title()} Repositories in GitHub')
 
 fig.update_traces(hovertemplate=None, marker_opacity=0.6)
 fig.update_layout(title_font_size=28,
@@ -60,4 +61,4 @@ fig.update_layout(title_font_size=28,
                   yaxis_title_font_size=20,
                   )
 fig.show()
-fig.write_html('top_python_repos_in_github.html')
+fig.write_html(f'top_{language}_repos_in_github.html')
