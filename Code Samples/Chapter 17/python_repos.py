@@ -25,30 +25,39 @@ print(f"Complete results: {not response_dicts['incomplete_results']}")
 
 # Explore information about the repositories
 repo_dicts = response_dicts['items']
-repo_names, stars = [], []
+repo_links, stars, hover_texts = [], [], []
 print(f"Repositories returned: {len(repo_dicts)}")
 
 print('\nSelected information about each repository: ')
 for repo_dict in repo_dicts:
-    repo_names.append(repo_dict['name'])
+    repo_name = repo_dict['name']
+    repo_url = repo_dict['html_url']
+    repo_link = f"<a href='{repo_url}'>{repo_name}</a>"
+    repo_links.append(repo_link)
     stars.append(repo_dict['stargazers_count'])
+    owner = repo_dict['owner']['login']
+    description = repo_dict['description']
+    hover_text = f"{owner}<br />{description}"
+    hover_texts.append(hover_text)
+
     print(f"\nName: {repo_dict['name']}")
     print(f"Owner: {repo_dict['owner']['login']}")
     print(f"Stars: {repo_dict['stargazers_count']}")
     print(f"Repository: {repo_dict['html_url']}")
     print(f"Description: {repo_dict['description']}")
 
-fig = px.bar(x=repo_names,
+fig = px.bar(x=repo_links,
              y=stars,
-             hover_data=[repo_names, stars],
+             hover_name=hover_texts,
              color=stars,
-             #text_auto=True,
-             labels={'y':'Number of Stars', 'x': 'Repositories'},
+             color_continuous_scale=px.colors.sequential.Plasma,
+             labels={'y': 'Number of Stars', 'x': 'Repositories'},
              title='Top Python Repositories in GitHub')
 
-fig.update_traces(hovertemplate=None)
-fig.update_layout(hovermode="x",
-                  title_font_size=28,
+fig.update_traces(hovertemplate=None, marker_opacity=0.6)
+fig.update_layout(title_font_size=28,
                   xaxis_title_font_size=20,
-                  yaxis_title_font_size=20)
+                  yaxis_title_font_size=20,
+                  )
+fig.show()
 fig.write_html('top_python_repos_in_github.html')
