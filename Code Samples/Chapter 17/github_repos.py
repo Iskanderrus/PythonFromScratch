@@ -9,14 +9,14 @@ token = token_path.read_text().strip()
 language = input('What programming language are you interested in? ').strip().lower()
 
 url = "https://api.github.com/search/repositories"
-python_request = f"?q=language:{language}+sort:stars+stars:>10000"
+language_request = f"?q=language:{language}+sort:stars+stars:>10000"
 
-python_api_request = url + python_request
+language_api_request = url + language_request
 
 headers = {'Authorization': 'token ' + token,
            "Accept": "application/vnd.github+json"}
 
-r = requests.get(url=python_api_request, headers=headers)
+r = requests.get(url=language_api_request, headers=headers)
 print(f"Status: {r.status_code}")
 
 # Convert the response object to a dictionary
