@@ -3,12 +3,11 @@ Script to get actual data from GitHub and make comparison of the programming lan
 """
 import csv
 import math
-
-import requests
 from pathlib import Path
-import plotly.express as px
-from plotly.subplots import make_subplots
+
 import plotly.graph_objects as go
+import requests
+from plotly.subplots import make_subplots
 
 data = []
 all_languages_plotting_data = []
@@ -62,7 +61,12 @@ for language in languages:
 counter = 0
 
 # Building a figure for subplots
-fig = make_subplots(rows=math.ceil(len(languages) / 2), cols=2, shared_yaxes='all')
+fig = make_subplots(
+    rows=math.ceil(len(languages) / 2),
+    cols=2,
+    shared_yaxes='all',
+    subplot_titles=[language.title() for language in languages]
+)
 
 # Building plots for each language
 for row in range(1, math.ceil(len(languages) / 2) + 1):
@@ -73,17 +77,34 @@ for row in range(1, math.ceil(len(languages) / 2) + 1):
                     x=all_languages_plotting_data[0][0],
                     y=all_languages_plotting_data[0][1],
                     name=f'{languages[counter].title()}'),
-                    row=row, col=col)
-
+                    row=row,
+                    col=col)
             counter += 1
 
             all_languages_plotting_data.remove(all_languages_plotting_data[0])
 
-fig.update_layout(legend_title_text="Programming Languages")
-fig.update_layout(title_text=f"Top Repositories for {', '.join(str(i).title() for i in languages)}")
+fig.update_xaxes(tickangle=45)
+fig.update_layout(legend_title_text="Programming Languages",
+                  title_text=f"Top Repositories for {', '.join(str(i).title() for i in languages)}",
+                  xaxis={'automargin': True},
+                  yaxis={'automargin': True}
+                  )
 fig.show()
 
 with open('data/my_data.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(data)
-# print(data)
+
+#TODO: Make a plot of data
+def plotting_data(data):
+    fig = make_subplots()
+
+    for data_dict in data:
+        for k, v in data_dict.items():
+            fig.add_trace(go.Bar(
+                x=k,
+                y=v))
+    fig.show()
+
+
+plotting_data(data=data)
