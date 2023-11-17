@@ -61,14 +61,8 @@ for language in languages:
 # Counter to control number of the languages on the list
 counter = 0
 
-# Calculating the max range based on the max number of stars for each language
-max_range = 0
-for x in all_languages_plotting_data:
-    if max(x[1]) > max_range:
-        max_range = max(x[1])
-
 # Building a figure for subplots
-fig = make_subplots(rows=math.ceil(len(languages) / 2), cols=2)
+fig = make_subplots(rows=math.ceil(len(languages) / 2), cols=2, shared_yaxes='all')
 
 # Building plots for each language
 for row in range(1, math.ceil(len(languages) / 2) + 1):
@@ -80,7 +74,6 @@ for row in range(1, math.ceil(len(languages) / 2) + 1):
                     y=all_languages_plotting_data[0][1],
                     name=f'{languages[counter].title()}'),
                     row=row, col=col)
-                fig.update_layout(yaxis_range=[0, max_range + 100])
 
             counter += 1
 
