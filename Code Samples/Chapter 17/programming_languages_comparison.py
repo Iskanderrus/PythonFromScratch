@@ -58,38 +58,39 @@ for language in languages:
     data.append(my_dict)
     all_languages_plotting_data.append([repo_links, stars])
 
-    # try:
-    #     fig = px.bar(x=repo_links,
-    #                  y=stars,
-    #                  hover_name=hover_texts,
-    #                  color=stars,
-    #                  color_continuous_scale=px.colors.sequential.Plasma,
-    #                  labels={'y': 'Number of Stars', 'x': 'Repositories'},
-    #                  title=f'Top {language.title()} Repositories in GitHub')
-    #
-    #     fig.update_traces(hovertemplate=None, marker_opacity=0.6)
-    #     fig.update_layout(title_font_size=28,
-    #                       xaxis_title_font_size=20,
-    #                       yaxis_title_font_size=20,
-    #                       )
-    # except ValueError:
-    #     print(f"Plot for {language} cannot be constructed.")
-    # else:
-    #     fig.show()
-    #     fig.write_html(f'top_{language}_repos_in_github.html')
+# Counter to control number of the languages on the list
+counter = 0
 
-fig = make_subplots(rows=len(languages), cols=1, shared_yaxes=True)
+# Calculating the max range based on the max number of stars for each language
+max_range = 0
+for x in all_languages_plotting_data:
+    if max(x[1]) > max_range:
+        max_range = max(x[1])
 
-for x in range(len(languages) + 1):
-    try:
-        fig.add_trace(go.Bar(x=all_languages_plotting_data[x][0], y=all_languages_plotting_data[x][1]))
-    except:
-        print('No data available.')
+# Building a figure for subplots
+fig = make_subplots(rows=math.ceil(len(languages) / 2), cols=2)
 
-fig.update_layout(height=2500, title_text=f"Top Repositories for {', '.join(str(i).title() for i in languages)}")
+# Building plots for each language
+for row in range(1, math.ceil(len(languages) / 2) + 1):
+    for col in range(1, 3):
+        if all_languages_plotting_data:
+            if all_languages_plotting_data[0][0]:
+                fig.add_trace(go.Bar(
+                    x=all_languages_plotting_data[0][0],
+                    y=all_languages_plotting_data[0][1],
+                    name=f'{languages[counter].title()}'),
+                    row=row, col=col)
+                fig.update_layout(yaxis_range=[0, max_range + 100])
+
+            counter += 1
+
+            all_languages_plotting_data.remove(all_languages_plotting_data[0])
+
+fig.update_layout(legend_title_text="Programming Languages")
+fig.update_layout(title_text=f"Top Repositories for {', '.join(str(i).title() for i in languages)}")
 fig.show()
 
 with open('data/my_data.csv', 'w', newline='') as f:
     writer = csv.writer(f)
     writer.writerow(data)
-print(data)
+# print(data)
