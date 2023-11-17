@@ -78,20 +78,15 @@ for language in languages:
     #     fig.show()
     #     fig.write_html(f'top_{language}_repos_in_github.html')
 
-rows_number = math.ceil(len(languages) / 2)
+fig = make_subplots(rows=len(languages), cols=1, shared_yaxes=True)
 
-fig = make_subplots(rows=rows_number, cols=2, shared_yaxes=True)
+for x in range(len(languages) + 1):
+    try:
+        fig.add_trace(go.Bar(x=all_languages_plotting_data[x][0], y=all_languages_plotting_data[x][1]))
+    except:
+        print('No data available.')
 
-for x in range(len(languages)):
-    for row in range(1, rows_number + 1):
-        for column in range(1, 3):
-            try:
-                fig.add_trace(go.Bar(x=all_languages_plotting_data[x][0], y=all_languages_plotting_data[x][1]),
-                              row=row, col=column)
-            except:
-                print('No data available.')
-
-#fig.update_layout(height=600, width=600, title_text="Multiple Subplots with Shared Y-Axes")
+fig.update_layout(height=2500, title_text=f"Top Repositories for {', '.join(str(i).title() for i in languages)}")
 fig.show()
 
 with open('data/my_data.csv', 'w', newline='') as f:
