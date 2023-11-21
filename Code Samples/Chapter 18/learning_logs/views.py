@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -9,6 +10,7 @@ def index(request):
     return render(request, 'learning_logs/index.html')
 
 
+@login_required
 def topics(request):
     """ Show all topics """
     topics = Topic.objects.order_by('date_added')
@@ -73,7 +75,7 @@ def edit_entry(request, entry_id):
         form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
-            return  redirect('learning_logs:topic', topic_id=topic.id)
+            return redirect('learning_logs:topic', topic_id=topic.id)
 
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
