@@ -8,6 +8,9 @@ def register(request):
     if request.method != 'POST':
         # Display blank registration form
         form = UserCreationForm()
+    else:
+        #Process completed form
+        form = UserCreationForm(data=request.POST)
 
         if form.is_valid():
             new_user = form.save()
